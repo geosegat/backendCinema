@@ -22,8 +22,20 @@ exports.getMovieById = async (req, res) => {
 };
 
 exports.createMovie = async (req, res) => {
-  const { title, description, duration, genre, rating, release_date } =
-    req.body;
+  const {
+    title,
+    description,
+    duration,
+    genre,
+    rating,
+    tittleOriginal,
+    director,
+    distributor,
+    castmovie,
+    country_of_origin,
+    image_url,
+    audio_format,
+  } = req.body;
   try {
     const newMovie = await MoviesModel.create({
       title,
@@ -31,7 +43,13 @@ exports.createMovie = async (req, res) => {
       duration,
       genre,
       rating,
-      release_date,
+      tittleOriginal,
+      director,
+      distributor,
+      castmovie,
+      country_of_origin,
+      image_url,
+      audio_format,
     });
     res.status(201).json(newMovie);
   } catch (error) {
@@ -41,8 +59,7 @@ exports.createMovie = async (req, res) => {
 };
 
 exports.updateMovie = async (req, res) => {
-  const { title, description, duration, genre, rating, release_date } =
-    req.body;
+  const { title, description, duration, genre, rating } = req.body;
   try {
     const updatedMovie = await MoviesModel.update(req.params.id, {
       title,
@@ -50,7 +67,6 @@ exports.updateMovie = async (req, res) => {
       duration,
       genre,
       rating,
-      release_date,
     });
     res.status(200).json(updatedMovie);
   } catch (error) {
@@ -62,7 +78,7 @@ exports.updateMovie = async (req, res) => {
 exports.deleteMovie = async (req, res) => {
   try {
     await MoviesModel.delete(req.params.id);
-    res.status(204).send();
+    res.status(200).send("Deletado com sucesso");
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Erro ao deletar filme" });

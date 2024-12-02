@@ -50,7 +50,7 @@ exports.updateRoom = async (req, res) => {
 exports.deleteRoom = async (req, res) => {
   try {
     await RoomsModel.delete(req.params.id);
-    res.status(204).send();
+    res.status(200).send("Deletado com sucesso");
   } catch (error) {
     console.error("Erro ao deletar sala:", error);
     res.status(500).json({ error: "Erro ao deletar sala" });

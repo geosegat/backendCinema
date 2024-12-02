@@ -11,10 +11,36 @@ exports.getById = async (id) => {
 };
 
 exports.create = async (movie) => {
-  const { title, description, duration, genre, rating, release_date } = movie;
+  const {
+    title,
+    description,
+    duration,
+    genre,
+    rating,
+    tittleOriginal,
+    director,
+    distributor,
+    castmovie,
+    country_of_origin,
+    image_url,
+    audio_format,
+  } = movie;
   const result = await pool.query(
-    "INSERT INTO movies (title, description, duration, genre, rating, release_date) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *",
-    [title, description, duration, genre, rating, release_date]
+    "INSERT INTO movies (title, description, duration, genre, rating, tittleOriginal, director, distributor, castmovie, country_of_origin, image_url, audio_format) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12) RETURNING *",
+    [
+      title,
+      description,
+      duration,
+      genre,
+      rating,
+      tittleOriginal,
+      director,
+      distributor,
+      castmovie,
+      country_of_origin,
+      image_url,
+      audio_format,
+    ]
   );
   return result.rows[0];
 };
@@ -22,8 +48,8 @@ exports.create = async (movie) => {
 exports.update = async (id, movie) => {
   const { title, description, duration, genre, rating, release_date } = movie;
   const result = await pool.query(
-    "UPDATE movies SET title = $1, description = $2, duration = $3, genre = $4, rating = $5, release_date = $6 WHERE id = $7 RETURNING *",
-    [title, description, duration, genre, rating, release_date, id]
+    "UPDATE movies SET title = $1, description = $2, duration = $3, genre = $4, rating = $5,  WHERE id = $6 RETURNING *",
+    [title, description, duration, genre, rating, id]
   );
   return result.rows[0];
 };

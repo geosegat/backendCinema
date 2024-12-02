@@ -1,4 +1,3 @@
-const { json } = require("express");
 const SessionModel = require("../repositories/sessions");
 const TicketsModel = require("../repositories/tickets");
 
@@ -70,9 +69,7 @@ exports.createSession = async (req, res) => {
 exports.deleteSession = async (req, res) => {
   try {
     await SessionModel.delete(req.params.id);
-    res.status(200).json({
-      message: "Deletado com sucesso",
-    });
+    res.status(200).send("Deletado com sucesso");
   } catch (error) {
     console.error("error ao deletar sessão:", error);
     res.status(500).json({ error: "Erro ao deletar sessão" });

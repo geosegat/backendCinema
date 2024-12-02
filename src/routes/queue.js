@@ -6,10 +6,8 @@ module.exports = () => {
 
   router.post("/", QueueController.addToQueue);
   router.post("/process", QueueController.processQueue);
-  router.get("/:session_id", QueueController.getQueue);
-  router.get("/:session_id/processed", QueueController.getProcessedQueue);
-
-  router.delete("/:session_id/clear", QueueController.clearQueue);
+  router.get("/position", QueueController.getMyPosition);
+  // router.delete("/:session_id/clear", QueueController.clearQueue);
 
   return router;
 };
