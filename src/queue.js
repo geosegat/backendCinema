@@ -2,6 +2,10 @@ class Queue {
   constructor() {
     this.queue = [];
     this.cursor = -1;
+
+    setInterval(() => {
+      this.callNext();
+    }, 10000);
   }
 
   getMyNumber() {
