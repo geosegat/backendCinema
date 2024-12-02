@@ -4,8 +4,13 @@ class Queue {
     this.cursor = -1;
 
     setInterval(() => {
-      this.callNext();
-    }, 10000);
+      if (this.queue.length > 0 && this.cursor !== -1) {
+        const currentTicket = this.queue[this.cursor];
+        this.queue.splice(this.cursor, 1);
+        this.queue.push(currentTicket);
+        this.cursor = 0;
+      }
+    }, 15000);
   }
 
   getMyNumber() {
